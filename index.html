@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Inquiry Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Student Inquiry Form</h2>
+        <form id="inquiryForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="batchtime">Preferred Batch Time:</label>
+            <input type="text" id="batchtime" name="batch" required>
+            <button type="submit"><a href="">Submit</a></button>
+        </form>
+       
+    </div>
+    
+
+	<script>
+    document.getElementById('inquiryForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+        
+        fetch('https://script.google.com/macros/s/AKfycbzxLm82pzp1eBo9YfH2uw3JoM0SFHg5cTftgqy4Dyr9G5qEVa-btDoo6bjYeKSJxGRH/exec', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert('Form submitting successfully');
+            
+        })
+        .catch(error => {
+            alert('Error submitting form');
+            console.error(error);
+        });
+    });
+</script>
+
+</body>
+</html>
